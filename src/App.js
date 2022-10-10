@@ -2,6 +2,8 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 
 import DefaultPage from './pages';
 import HomePage from './pages/Home';
+
+import { pageList } from './pages/config';
 import './App.css';
 
 function App() {
@@ -9,15 +11,14 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          
+          {/* <Route path="/demo1" element={<Demo1 />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="*" element={<DefaultPage />} /> */}
+          {pageList.map(item => {
+            return <Route path={item.route} element={item.component} />;
+          })}
           <Route path="/home" element={<HomePage />} />
           <Route path="*" element={<DefaultPage />} />
-          {/* <Route
-            path="/home"
-            render={() => {
-              return <HomePage />;
-            }}
-          ></Route> */}
         </Routes>
       </Router>
       {/* <div>123</div> */}
