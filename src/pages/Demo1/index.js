@@ -5,6 +5,8 @@ import * as THREE from 'three';
 import styles from './index.module.scss';
 import { useEffect } from 'react';
 
+import { OrbitControls } from '../../../node_modules/three/examples/jsm/controls/OrbitControls';
+
 const Demo1 = () => {
   useEffect(() => {
     const view = document.getElementById('viewBox');
@@ -54,8 +56,19 @@ const Demo1 = () => {
     renderer.setSize(width, height); //设置渲染区域尺寸
     renderer.setClearColor(0xb9d3ff, 1); //设置背景颜色
     view.appendChild(renderer.domElement); //body元素中插入canvas对象
-    //执行渲染操作   指定场景、相机作为参数
-    renderer.render(scene, camera);
+    // //执行渲染操作   指定场景、相机作为参数
+    // renderer.render(scene, camera);
+
+    // 创建轨道控制器
+    const controls = new OrbitControls(camera, renderer.domElement);
+
+    function render() {
+      //执行渲染操作   指定场景、相机作为参数
+      renderer.render(scene, camera);
+      requestAnimationFrame(render)
+    }
+
+    render()
 
     // return () => {
     //     view.removeChild(renderer.domElement)
@@ -65,8 +78,7 @@ const Demo1 = () => {
   return (
     <div className={styles.demoContainer}>
       <Header />
-      <Container>
-      </Container>
+      <Container></Container>
     </div>
   );
 };

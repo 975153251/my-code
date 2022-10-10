@@ -22,6 +22,8 @@ const Demo2 = () => {
     );
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(box.clientWidth, box.clientHeight);
+    renderer.setClearColor(0xb9d3ff, 1); //设置背景颜色
+
     // console.log(document.getElementById("viewBox"));
     document.getElementById("viewBox").appendChild(renderer.domElement);
 
