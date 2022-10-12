@@ -4,6 +4,7 @@ import Demo1 from './Demo1';
 import Demo2 from './Demo2';
 import Demo3 from './Demo3';
 import Demo4 from './Demo4';
+import Demo5 from './Demo5';
 
 const pageList = [
   //   { pageName: 'Demo2', route: '/demo2' },
@@ -11,6 +12,7 @@ const pageList = [
   { pageName: 'Demo2', route: '/demo2', component: <Demo2 /> },
   { pageName: 'Demo3', route: '/demo3', component: <Demo3 /> },
   { pageName: 'Demo4', route: '/demo4', component: <Demo4 /> },
+  { pageName: 'Demo5', route: '/demo5', component: <Demo5 /> },
 //   { pageName: 'HomePage', route: '/home', component: <HomePage /> },
 //   { pageName: 'DefaultPage', route: '*', component: <DefaultPage /> },
 ];

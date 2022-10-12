@@ -182,7 +182,7 @@ const Demo4 = () => {
 
     geometry3.attributes.color = new THREE.BufferAttribute(colors, 3); //3个为一组,表示一个顶点的颜色数据RGB
 
-    // 三角面(网格)渲染模式
+    // 线渲染模式
     var material3 = new THREE.LineBasicMaterial({
       // color: 0x0000ff, //三角面颜色
       vertexColors: true, //以顶点颜色为准
