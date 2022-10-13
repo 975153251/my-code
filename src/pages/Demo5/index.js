@@ -161,7 +161,7 @@ const Demo5 = () => {
 
   return (
     <div className={styles.demoContainer}>
-      <Header />
+      <Header title={'Demo5'}/>
       <Container></Container>
     </div>
   );

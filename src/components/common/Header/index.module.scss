@@ -8,6 +8,7 @@
   align-items: center;
   box-sizing: border-box;
   padding: 0 12px;
+  position: relative;
 
   .defaultBtn {
     width: 80px;
@@ -21,5 +22,15 @@
     cursor: pointer;
     color: white;
     border-radius: 10px;
+  }
+
+  .title {
+    position: absolute;
+    // top: 0;
+    // right: 0;
+    // bottom: 0;
+    left: 50%;
+    color: white;
+    transform: translate(-50%)
   }
 }

@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router';
 
 import styles from './index.module.scss';
 
-const Header = () => {
+const Header = props => {
+  const { title } = props;
   const navigate = useNavigate();
 
   // 跳转首页
@@ -16,6 +17,7 @@ const Header = () => {
       <div className={styles.defaultBtn} onClick={goHome}>
         去首页
       </div>
+      <span className={styles.title}>{title || 'title'}</span>
     </div>
   );
 };
