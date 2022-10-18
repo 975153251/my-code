@@ -101,7 +101,7 @@ const Demo5 = () => {
     // 设置几何体attributes属性的位置normal属性
     geometry.attributes.normal = new THREE.BufferAttribute(normals, 3); //3个为一组,表示一个顶点的法向量数据
     // 三角面(网格)渲染模式
-    var material1 = new THREE.MeshBasicMaterial({
+    var material1 = new THREE.MeshLambertMaterial({
       color: 0x0000ff, //三角面颜色
       // vertexColors: true, //以顶点颜色为准
       side: THREE.DoubleSide, //两面可见
