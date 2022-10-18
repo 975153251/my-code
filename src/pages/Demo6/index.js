@@ -1,4 +1,4 @@
-// Demo5
+// Demo6
 import { useLocation } from 'react-router';
 import Header from '../../components/common/Header';
 import Container from '../../components/common/Container';
@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { OrbitControls } from '../../../node_modules/three/examples/jsm/controls/OrbitControls';
 import getQueryString from '../../utils/Common/getQueryString';
 
-const Demo5 = () => {
+const Demo6 = () => {
   const param = useLocation();
   const pageName = getQueryString(param.search, 'title') || '';
 
@@ -28,88 +28,27 @@ const Demo5 = () => {
     /**
      * 创建网格模型
      */
+    var geometry1 = new THREE.BoxGeometry(50, 50, 50); //创建一个立方体几何对象Geometry
 
-    //类型数组创建顶点颜色color数据
-    var colors = new Float32Array([
-      1,
-      0,
-      0, //顶点1颜色
-      0,
-      1,
-      0, //顶点2颜色
-      0,
-      0,
-      1, //顶点3颜色
+    // 几何体xyz三个方向都放大2倍
+    geometry1.scale(0.5, 1.5, 2);
+    // 几何体沿着x轴平移50
+    geometry1.translate(50, 0, 0);
+    // 几何体绕着x轴旋转45度
+    geometry1.rotateX(Math.PI / 4);
+    // 居中：偏移的几何体居中
+    // geometry1.center();
 
-      1,
-      1,
-      0, //顶点4颜色
-      0,
-      1,
-      1, //顶点5颜色
-      1,
-      0,
-      1, //顶点6颜色
-    ]);
-
-    var geometry = new THREE.BufferGeometry(); //声明一个空几何体对象
-    //类型数组创建顶点位置position数据
-    var vertices = new Float32Array([
-      0,
-      0,
-      0, //顶点1坐标
-      80,
-      0,
-      0, //顶点2坐标
-      80,
-      80,
-      0, //顶点3坐标
-      0,
-      80,
-      0, //顶点4坐标
-    ]);
-    // 创建属性缓冲区对象
-    var attribue = new THREE.BufferAttribute(vertices, 3); //3个为一组
-    // 设置几何体attributes属性的位置position属性
-    geometry.attributes.position = attribue;
-
-    geometry.attributes.color = new THREE.BufferAttribute(colors, 3); //3个为一组,表示一个顶点的颜色数据RGB
-
-    var normals = new Float32Array([
-      0,
-      0,
-      1, //顶点1法向量
-      0,
-      0,
-      1, //顶点2法向量
-      0,
-      0,
-      1, //顶点3法向量
-      0,
-      0,
-      1, //顶点4法向量
-    ]);
-    // 设置几何体attributes属性的位置normal属性
-    geometry.attributes.normal = new THREE.BufferAttribute(normals, 3); //3个为一组,表示一个顶点的法向量数据
-
-    // Uint16Array类型数组创建顶点索引数据
-    var indexes = new Uint16Array([
-      // 0对应第1个顶点位置数据、第1个顶点法向量数据
-      // 1对应第2个顶点位置数据、第2个顶点法向量数据
-      // 索引值3个为一组，表示一个三角形的3个顶点
-      0, 1, 2, 0, 2, 3,
-    ]);
-
-    // 索引数据赋值给几何体的index属性
-    geometry.index = new THREE.BufferAttribute(indexes, 1); //1个为一组
-
-    // 三角面(网格)渲染模式
     var material1 = new THREE.MeshLambertMaterial({
-      color: 0x0000ff, //三角面颜色
-      // vertexColors: true, //以顶点颜色为准
-      side: THREE.DoubleSide, //两面可见
-    }); //材质对象
-    var mesh1 = new THREE.Mesh(geometry, material1); //网格模型对象Mesh
+      color: 0x0000ff,
+      // vertexColors: THREE.FaceColors,
+      // wireframe:true,//线框模式渲染
+    }); //材质对象Material
+
+    var mesh1 = new THREE.Mesh(geometry1, material1); //网格模型对象Mesh
+    // 网格模型xyz方向分别缩放0.5,1.5,2倍
+    mesh1.scale.set(0.5, 1.5, 2);
+
     scene.add(mesh1);
 
     /**
@@ -170,4 +109,4 @@ const Demo5 = () => {
   );
 };
 
-export default Demo5;
+export default Demo6;

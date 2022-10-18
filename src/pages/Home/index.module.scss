@@ -4,7 +4,8 @@
   background-color: skyblue;
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;
+  // align-items: flex-start;
+  flex-wrap: wrap;
 
   .demoBtn {
     width: 200px;

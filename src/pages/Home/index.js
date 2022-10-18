@@ -14,7 +14,7 @@ const HomePage = () => {
             className={styles.demoBtn}
             onClick={() => {
               // 跳转对应demo路由
-              navigate(item.route);
+              navigate(`${item.route}?title=${item.pageName}`);
             }}
           >
             {item.pageName}

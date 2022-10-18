@@ -1,4 +1,4 @@
-// Demo5
+// Demo7
 import { useLocation } from 'react-router';
 import Header from '../../components/common/Header';
 import Container from '../../components/common/Container';
@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { OrbitControls } from '../../../node_modules/three/examples/jsm/controls/OrbitControls';
 import getQueryString from '../../utils/Common/getQueryString';
 
-const Demo5 = () => {
+const Demo7 = () => {
   const param = useLocation();
   const pageName = getQueryString(param.search, 'title') || '';
 
@@ -28,89 +28,66 @@ const Demo5 = () => {
     /**
      * 创建网格模型
      */
+    var geometry1 = new THREE.SphereGeometry(50, 15, 15); //创建一个球体几何对象
+    // 几何体沿着x轴平移-150
+    geometry1.translate(-150, 0, 0);
+    // 创建一个点材质对象
+    var material1 = new THREE.PointsMaterial({
+      color: 0x0000ff, //颜色
+      size: 3, //点渲染尺寸
+    });
+    //点模型对象  参数：几何体  点材质
+    var point = new THREE.Points(geometry1, material1);
+    scene.add(point); //网格模型添加到场景中
 
-    //类型数组创建顶点颜色color数据
-    var colors = new Float32Array([
-      1,
-      0,
-      0, //顶点1颜色
-      0,
-      1,
-      0, //顶点2颜色
-      0,
-      0,
-      1, //顶点3颜色
+    var geometry2 = new THREE.SphereGeometry(50, 15, 15); //球体
+    // 直线基础材质对象
+    var material2 = new THREE.LineBasicMaterial({
+      color: 0x0000ff,
+    });
+    var line = new THREE.Line(geometry2, material2); //线模型对象
+    scene.add(line); //点模型添加到场景中s
 
-      1,
-      1,
-      0, //顶点4颜色
-      0,
-      1,
-      1, //顶点5颜色
-      1,
-      0,
-      1, //顶点6颜色
-    ]);
-
-    var geometry = new THREE.BufferGeometry(); //声明一个空几何体对象
-    //类型数组创建顶点位置position数据
+    // 线模型
+    var geometry3 = new THREE.BufferGeometry(); //创建一个Buffer类型几何体对象
+    //类型数组创建顶点数据
     var vertices = new Float32Array([
-      0,
+      180,
       0,
       0, //顶点1坐标
-      80,
+      230,
       0,
       0, //顶点2坐标
-      80,
-      80,
+      180,
+      100,
       0, //顶点3坐标
+      180,
       0,
-      80,
-      0, //顶点4坐标
+      10, //顶点4坐标
+      180,
+      0,
+      100, //顶点5坐标
+      230,
+      0,
+      10, //顶点6坐标
     ]);
     // 创建属性缓冲区对象
-    var attribue = new THREE.BufferAttribute(vertices, 3); //3个为一组
-    // 设置几何体attributes属性的位置position属性
-    geometry.attributes.position = attribue;
+    var attribue3 = new THREE.BufferAttribute(vertices, 3); //3个为一组，表示一个顶点的xyz坐标
+    // 设置几何体attributes属性的位置属性
+    geometry3.attributes.position = attribue3;
 
-    geometry.attributes.color = new THREE.BufferAttribute(colors, 3); //3个为一组,表示一个顶点的颜色数据RGB
-
-    var normals = new Float32Array([
-      0,
-      0,
-      1, //顶点1法向量
-      0,
-      0,
-      1, //顶点2法向量
-      0,
-      0,
-      1, //顶点3法向量
-      0,
-      0,
-      1, //顶点4法向量
-    ]);
-    // 设置几何体attributes属性的位置normal属性
-    geometry.attributes.normal = new THREE.BufferAttribute(normals, 3); //3个为一组,表示一个顶点的法向量数据
-
-    // Uint16Array类型数组创建顶点索引数据
-    var indexes = new Uint16Array([
-      // 0对应第1个顶点位置数据、第1个顶点法向量数据
-      // 1对应第2个顶点位置数据、第2个顶点法向量数据
-      // 索引值3个为一组，表示一个三角形的3个顶点
-      0, 1, 2, 0, 2, 3,
-    ]);
-
-    // 索引数据赋值给几何体的index属性
-    geometry.index = new THREE.BufferAttribute(indexes, 1); //1个为一组
-
-    // 三角面(网格)渲染模式
-    var material1 = new THREE.MeshLambertMaterial({
-      color: 0x0000ff, //三角面颜色
-      // vertexColors: true, //以顶点颜色为准
-      side: THREE.DoubleSide, //两面可见
-    }); //材质对象
-    var mesh1 = new THREE.Mesh(geometry, material1); //网格模型对象Mesh
-    scene.add(mesh1);
+    // 几何体沿着x轴平移150
+    // geometry3.translate(250, 0, 0);
+    // 虚线材质对象：产生虚线效果
+    var material3 = new THREE.LineDashedMaterial({
+      color: 0x0000ff,
+      dashSize: 10, //显示线段的大小。默认为3。
+      gapSize: 5, //间隙的大小。默认为1
+    });
+    var DashLine = new THREE.Line(geometry3, material3); //线模型对象
+    //  computeLineDistances方法  计算LineDashedMaterial所需的距离数组
+    DashLine.computeLineDistances();
+    scene.add(DashLine); //点模型添加到场景中
 
     /**
      * 光源设置
@@ -170,4 +147,4 @@ const Demo5 = () => {
   );
 };
 
-export default Demo5;
+export default Demo7;
